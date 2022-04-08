@@ -20,6 +20,7 @@ my_rbernoulli <- function(n, p) {
 my_rbinomial <- function(n, p, m) {
   x <- c()
   for (i in 1:n){
+    #view Binomial as the sum of independent Bernoulli 
     d <- 0
     for (j in 1:m){
       y <- my_rbernoulli(m,p)

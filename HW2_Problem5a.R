@@ -12,3 +12,4 @@ for (val in yrs_educ){
 
 n <- 329509
 result = count/n
+result

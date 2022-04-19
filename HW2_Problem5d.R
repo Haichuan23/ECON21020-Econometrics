@@ -29,10 +29,9 @@ for (i in 1:length(yrs_educ)){
   }
 }
 
-var = var/(count_college-1) #calculate the variance
-se_college = sqrt(var/p_x)/sqrt(count_college)
+var = var/(count_college) #calculate the variance
+se_college = sqrt(var/p_x)/sqrt(n)
 
 
 error <- qnorm(0.975) * se_college
-mucollege - error
-mucollege + error
+c(mucollege - error, mucollege + error)

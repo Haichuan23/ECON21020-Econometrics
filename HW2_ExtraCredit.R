@@ -5,10 +5,6 @@ yrs_educ <- df$YRS_EDUC
 wkly_wage <- df$WKLY_WAGE
 
 
-has_college_degree <- yrs_educ == 16
-count <- sum(has_college_degree)
-
-
 count <- 0
 for (val in yrs_educ){
   if (val == 16) count = count + 1
@@ -16,8 +12,6 @@ for (val in yrs_educ){
 
 n <- length(yrs_educ)
 p_x = count/n # probability of being a college grad
-
-mu_college <- mean(wkly_wage[has_college_degree])
 
 sum <- 0 
 var <- 0

@@ -30,7 +30,7 @@ for (i in 1:length(yrs_educ)){
   }
 }
 
-var = var/(count_college-1) #calculate the variance
-se_college = sqrt(var/p_x)/sqrt(count_college)
+var = var/(count_college) #calculate the variance
+se_college = sqrt(var/p_x)/sqrt(n)
 se_college
 

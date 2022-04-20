@@ -80,10 +80,10 @@ my_twosidedtest <- function(mu_hat, se, alpha, mu_0){
   
   # Construct test message
   if (is_rejected){
-    message <-paste("The test of H0: mu =", mu_0, "against H1: mu !=", mu_0,
+    message <-paste("The test of H1: mu !=", mu_0, "against H0: mu =", mu_0,
                     "rejects at a", alpha, "significance level")
   }else{
-    message <-paste("The test of H0: mu =", mu_0, "against H1: mu !=", mu_0,
+    message <-paste("The test of H1: mu !=", mu_0, "against H0: mu =", mu_0,
                     "fails to rejects at a", alpha, "significance level")
   }
   #Print the message

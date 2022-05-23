@@ -1,0 +1,70 @@
+dat <- read.csv("/Users/haichuan/ECON21020:Econometrics/bw06.csv")
+dat <- as.matrix(dat)
+n <- 9800
+
+y <- dat[, "birthweight"]
+w <- dat[, "cigsdaily"]
+x <- cbind(1, dat[, c("boy", "age", "highschool", "somecollege", 
+                        "college")])
+x_tld <- dat[, "married"]
+
+#part a
+beta_yw_hat <- cov(y,w)/var(w)
+alpha_yw_hat <- mean(y)-mean(w)*beta_yw_hat
+beta_yw_hat
+
+#part b
+# Apply Frisch Waugh Theorem
+
+#First we find the BLP(Y|X)
+XX_inv <- solve(t(x) %*% x)
+XY <- t(x) %*% y
+beta_yx <- XX_inv %*% XY
+blp_yx <- x %*% beta_yx
+y_tld <- y-blp_yx
+
+
+# Then we find BLP(W|X)
+XW <- t(x) %*% w
+beta_wx <- XX_inv %*% XW
+blp_wx <- x %*% beta_wx
+w_tld <- w-blp_wx
+
+blp_ywx <- cov(y_tld, w_tld)/var(w_tld)
+blp_ywx  #BLP(Y|W,X) coefficient corresponding to w
+
+#Part f Verify the common support using the observed data
+# The method to check P(W=w, X=x) > 0 for all w, x in the support
+
+supp_x <- unique(x) # get all possible combinations of x
+supp_w <- unique(w) # get all possible combinations of w
+
+length(supp_x) * length(supp_w)
+
+#Specifically
+flag = 0
+for (row in 1:nrow(dat)){
+  boy <- dat[row, "boy"]
+  age <- dat[row, "age"]
+  highschool <- dat[row, "highschool"]
+  somecollege <- dat[row, "somecollege"]
+  college <- dat[row, "college"]
+  cigsdaily <- dat[row, "cigsdaily"]
+  flag <- ((boy == 0) & (age = 25) & (highschool = 1) & (college =0) &
+            (somecollege =0) & (cigsdaily = 20))
+  if (flag == 1){
+    break
+  }
+}
+ if(flag == 0){
+   print("the combination has not appeared")
+ } else{
+   print("the combination has appeared")
+ }
+
+
+
+
+
+
+
